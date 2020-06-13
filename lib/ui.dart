@@ -1,5 +1,14 @@
 import 'package:flutter/material.dart';
-class UI1 extends StatelessWidget {
+class UI1 extends StatefulWidget {
+  @override
+  UI1State createState() {
+    return new UI1State();
+  }
+}
+
+class UI1State extends State<UI1> {
+  bool _index = false;
+  int _isSelected = 0;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -11,38 +20,70 @@ class UI1 extends StatelessWidget {
                backgroundColor: Colors.white,
                elevation: 0.0,
                bottom: TabBar(
-                 indicatorColor: Colors.white,
+                 indicatorColor: Colors.blue,
                  tabs: <Widget>[
-                   Text("Cancel",
-                   style: TextStyle(
-                   color: Colors.grey,
-                   fontSize: 13.0
+                       Container(
+                     width: 240.0,
+                     height: 30.0,
+                     decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50.0),
+                          color: ( _isSelected == 4 ) ?  Colors.blue : Colors.white,
+                     ),
+                          child: Center(
+                            child: Text("Cancel",
+                     style: TextStyle(
+                            color: (_isSelected == 4) ?  Colors.white :  Colors.black,
+                            fontSize: 13.0
+                     ),
+                     ),
+                          ),
                    ),
-                   ),
-                   Text("inProcess",
-                   style: TextStyle(
-                     color: Colors.grey,
-                     fontSize: 12.0
-                   ),),
-                   Text("Completed",
-                   style: TextStyle(
-                     color: Colors.grey,
-                     fontSize: 11.0
-                   ),),
-                    Container(
+                     Container(
                      width: 240.0,
                      height: 30.0,
                      decoration: BoxDecoration(
                        borderRadius: BorderRadius.circular(50.0),
-                       color: Colors.blue,
+                       color: (_isSelected == 3) ?  Colors.blue :  Colors.white,
                      ),
                        child: Center(
-                         child: Text("All",
+                         child: Text("In Process",
                      style: TextStyle(
-                         color: Colors.white
+                         color: (_isSelected == 3) ?  Colors.white :  Colors.black,
+                         fontSize: 11.0
                      ),
                      ),
                        ),
+                   ),
+                       Container(
+                     width: 240.0,
+                     height: 30.0,
+                     decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50.0),
+                        color: (_isSelected == 2) ?  Colors.blue :  Colors.white,
+                     ),
+                        child: Center(
+                          child: Text("Completed",
+                     style: TextStyle(
+                          color: (_isSelected == 2) ?  Colors.white :  Colors.black,
+                          fontSize: 11.0
+                     ),
+                     ),
+                        ),
+                   ),
+                    Container(
+                    width: 240.0,
+                    height: 30.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50.0),
+                      color: (_isSelected == 1) ?  Colors.blue :  Colors.white,
+                    ),
+                      child: Center(
+                        child: Text("All",
+                    style: TextStyle(
+                        color: (_isSelected == 1) ?  Colors.white :  Colors.black,
+                    ),
+                    ),
+                      ),
                    ),
                  ],
                  ),
@@ -53,7 +94,6 @@ class UI1 extends StatelessWidget {
                   InProcessView(context),
                   CompletedView(context),
                   AllView(context),
-             
               ],
            ),
          ),
@@ -85,7 +125,7 @@ class UI1 extends StatelessWidget {
    ],
    );
   }
-    //########### Its The ALLVIEW Widget ########                                     
+
      Widget AllView(context) {
        return ListView(
                 children: <Widget>[
@@ -390,7 +430,7 @@ class UI1 extends StatelessWidget {
                 ],
        );
      }
-     //########### Its The COMPLETED Widget ########                                                                                                                                          
+
      Widget CompletedView(context) {
        
        return ListView(
@@ -506,7 +546,7 @@ class UI1 extends StatelessWidget {
                 ],
        );
      }
-     //########### Its The IN PROCESS Widget ########                                                                                                        
+
      Widget InProcessView(context) {
         return ListView(
                 children: <Widget>[
@@ -621,7 +661,7 @@ class UI1 extends StatelessWidget {
                 ],
        );
      }
-     //########### Its The CANCEL Widget ########                                                                                     
+
      Widget CancelView(context) {
        return ListView(
                 children: <Widget>[
